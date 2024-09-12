@@ -1,34 +1,48 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>Hello {{ name }}</p>
-    <p>I am {{ age }} years old.</p>
+    <!-- <h1>Person One</h1>
+    <p>{{ personOne.name }} - {{ personOne.age }}</p>
+    <button @click="changeOne">Change One</button>
 
-    <input type="text" v-model="name">
-    <button @click="handleClick">Click</button>
-    <button @click="age++">Increase Age</button>
+    <h1>Person Two</h1>
+    <p>{{ personTwo.name }} - {{ personTwo.age }}</p>
+    <button @click="changeTwo">Change Two</button> -->
+
+    <h1>User One - {{ userOne }}</h1>
+    <button @click="changeOne">Change One</button>
+    <h1>User Two - {{ userTwo }}</h1>
+    <button @click="changeTwo">Change Two</button>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-
-
+import { reactive, ref } from 'vue';
 export default {
-  setup(){
-    /**
-     * no reactive code
-     */
-    // let name = "Swan Yi Phyo"
+  setup() {
+    // let personOne = ref({
+    //   name: 'John',
+    //   age: 25
+    // })
 
-    /**
-     * reactive code
-     */
-    let name  = ref("Swan Yi Phyo")
-    console.log(name.value)
-    let age = ref(22)
-    let handleClick = () => name.value = "Fisheeesh"
-    return{ name, age, handleClick }
+    // let personTwo = reactive({
+    //   name: "Jane",
+    //   age: 26
+    // }) 
+    // // console.log(personTwo)
+    // // console.log(personOne)
+
+    // let changeOne = () => personOne.value.name = "Swan Yi Phyo"
+    // let changeTwo = () => personTwo.name = "Fisheeesh"
+
+    let userOne = ref("Swan Yi Phyo")
+    let userTwo = reactive("Fisheeesh")
+
+    let changeOne = () => userOne.value = "John"
+    //this will not work cuz reactive can not be worked with primitive values
+    let changeTwo = () => userTwo = "Jane"
+
+
+    return { userOne, userTwo, changeOne, changeTwo }
   }
 }
 </script>
