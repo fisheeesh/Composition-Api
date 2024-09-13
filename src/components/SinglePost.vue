@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+import { computed, onMounted, onUnmounted, onUpdated, ref } from 'vue';
 
 export default {
     props : ['post'],
@@ -14,6 +14,10 @@ export default {
         let cutPostBody = computed(() => {
             return props.post.body.substring(0, 100) + "..."
         })
+
+        onMounted(() => console.log("mounted"))
+        onUnmounted(() => console.log("unmounted"))
+        onUpdated(() => console.log("updated"))
 
         return { cutPostBody, isShow }
     }

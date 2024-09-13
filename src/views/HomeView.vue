@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <PostsList :posts="posts"></PostsList>
+    <button @click="posts.pop()">Delete</button>
   </div>
 </template>
 
