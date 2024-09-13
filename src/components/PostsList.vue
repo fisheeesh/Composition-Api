@@ -1,28 +1,21 @@
 <template>
-  <h1>Posts List</h1>
   <div v-for="post in posts" :key="post.id">
-    <div v-if="isShow">
-      <SinglePost :post="post"></SinglePost>
-    </div>
+    <SinglePost :post="post"></SinglePost>
   </div>
-  <button @click="isShow = !isShow">Show</button>
 </template>
 
 <script>
-import { ref } from 'vue';
 import SinglePost from './SinglePost'
+import { onMounted, onUnmounted, onUpdated } from 'vue';
 export default {
   components: { SinglePost },
-  props: ['posts'],
-  setup(props){
-    let isShow = ref(false)
-    // console.log(props.posts[0].title)
-
-    return { isShow }
+  props : ['posts'],
+  setup(){
+    onMounted(() => console.log("mounted"))
+    onUnmounted(() => console.log("unmounted"))
+    onUpdated(() => console.log("updated"))
   }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

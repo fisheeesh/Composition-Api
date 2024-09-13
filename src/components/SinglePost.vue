@@ -1,25 +1,21 @@
 <template>
-  <h1>{{ post.title }}</h1>
-  <p>{{ isShow ? post.body : cutPostBody }} <span @click="isShow = !isShow">{{ isShow ? '' : 'Show more' }}</span></p>
-  
+    <h1>{{ post.title }}</h1>
+    <p @click="isShow = !isShow">{{ isShow ? post.content : cutBodyPost }}</p>
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted, onUpdated, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 export default {
-    props : ['post'],
+    props : [
+        'post'
+    ],
     setup(props){
+        // console.log(props.post.title)
         let isShow = ref(false)
-        let cutPostBody = computed(() => {
-            return props.post.body.substring(0, 100) + "..."
-        })
+        let cutBodyPost = computed(()=> props.post.content.substring(0, 100) + "...")
 
-        onMounted(() => console.log("mounted"))
-        onUnmounted(() => console.log("unmounted"))
-        onUpdated(() => console.log("updated"))
-
-        return { cutPostBody, isShow }
+        return { cutBodyPost, isShow}
     }
 }
 </script>
